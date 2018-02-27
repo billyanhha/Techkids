@@ -2,17 +2,27 @@ div{
     background-color: rgb(232, 241, 241);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    
+    padding: 0;
 }
-header , footer{
+header {
     width: 100%;
     clear: both;
-    border-bottom: 1px solid gray;;
+    
 }
-
-
-header img{
+footer{
+    height: 250px;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 50px;
+    font-style: italic;
+    color: black;
+    background-image: url("https://m.popkey.co/2b2beb/A66pp.gif");
+    clear: left;
+}
+header table{
     margin-left: 5%;
+}
+header img{
     border-radius: 100%;
 }
 header span,a{
@@ -28,7 +38,6 @@ nav{
     width: 20%;
     float: left;
     color:black;
-    
 }
 nav p{
     font-size: 15px;
