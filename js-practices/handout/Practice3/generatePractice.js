@@ -24,11 +24,15 @@ function generate(testLengthArray){
     }
     sort(area);
     var temp =  Math.floor(Math.random()*testLengthArray[i]);
-    var key =Math.floor(Math.random()*2);
-    if(key == 0 ){
+    var key =Math.floor(Math.random()*4);
+    if(key === 0 ){
       target = area[temp];
-    } else {
+    } else if(key === 1){
       target = 12345;
+    } else if(key === 3){
+      target = area[0];
+    } else if(key === 2){
+      target = area[testLengthArray[i]-1];
     }
     
     result.push({"input":area , "target":target , "output":area.indexOf(target)});
