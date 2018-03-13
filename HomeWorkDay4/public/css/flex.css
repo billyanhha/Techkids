@@ -1,0 +1,36 @@
+body{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.header{
+    background-color: #1b10bb;
+    text-align: center;
+}
+.kid {
+    background-color: #800080;
+    text-align: center;
+    width: 100%;
+}
+
+.main {
+    background-color: #ffd700;
+    width: 75%;
+    /* float: left; */
+    /* height: auto; */
+    text-align: center;
+    /* overflow: auto; */
+}
+aside.aside {
+    background-color: #808080;
+    text-align: center;
+    height: auto;
+    width: 25%;
+}
+
+
+.footer {
+    background-color: #00ffff;
+    clear: both;
+    text-align: center;
+}
