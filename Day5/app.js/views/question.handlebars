@@ -1,0 +1,20 @@
+<div class="container" style="margin-top :10%">
+    <h1 style=" text-align: center">{{question}}</h1>
+    <div class="btn-group btn-group-justified" >
+        <div class="btn-group">
+            <form method="post" action="/question">
+            <button  type="submit" name="yes" value="1" class="btn btn-success">Yes</button>
+            </form>
+        </div>
+        <div class="btn-group">
+            <form method="post" action="/question">
+            <button  type="submit" name="no" value="0" class="btn btn-danger">No</button>
+            </form>
+        </div>
+    </div>
+    <h1>Number of sumary </h1>
+    <h3>Yes : {{yes}}</h3>
+    
+    <h3> &nbspNo : {{no}}</h3>
+    <a href="/" class="btn btn-warning" style="margin-top :3%">Another question</a></li>
+</div>

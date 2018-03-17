@@ -1,0 +1,75 @@
+.flex-container {
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    text-align: center;
+	
+}
+body
+{
+	font-family: Verdana;
+
+}
+
+.flex-container > * {
+    padding: 15px;
+    -webkit-flex: 1 100%;
+    flex: 1 100%;
+}
+
+
+
+header {  background-color: white;;color:#ff7f00;height:80px; }
+
+footer {background: #aaa; color: white;}
+nav {background:#e0e0d1 ;  }
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+
+}
+ a {   
+text-decoration: none;
+color :black;
+}
+h4
+{
+	color:black;
+}
+section {
+    float: left;
+    max-width: 160px;
+    margin: 0;
+    font-size: 15px;
+}
+section table{
+  margin-left: 150px;
+}
+hr
+{
+	color: red;
+}
+
+
+aside{
+  float: right;
+    padding-right: 0;
+    overflow: hidden;
+}
+.myTableBg3 { 
+  width: 50%;
+  font-size:15px;
+   border-collapse: collapse;
+  font-style :italic;
+  text-decoration: none;
+  color:black;
+  table-layout: fixed;
+  float: justify;
+  }
+  .myTableBg3 td
+  {
+     white-space: nowrap;
+     overflow: hidden;
+    text-overflow: ellipsis;
+  }

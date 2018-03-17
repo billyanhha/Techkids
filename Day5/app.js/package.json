@@ -1,0 +1,19 @@
+{
+  "name": "caube",
+  "version": "1.0.0",
+  "description": "Deptrai",
+  "main": "haha",
+  "scripts": {
+    "test": "ok"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express-handlebars": "^3.0.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "express": "^4.16.3"
+  }
+}
