@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 let MyreadFileSync = (path) => {
-    return JSON.parse(fs.readFileSync(path , 'utf-8'));
+    return JSON.parse(fs.readFileSync(path , 'utf-8' ));
 
 }
 

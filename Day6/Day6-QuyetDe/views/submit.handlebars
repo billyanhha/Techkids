@@ -1,0 +1,11 @@
+<div class="container" >
+    <h1 style="text-align: center ; margin-top : 7% ; padding-bottom: 5%">{{question}}</h1>
+    <form action="/ques/{{link}}"   method="post" name="answer" class="form-group" >
+    <button type="submit"  name = "no" value="no" class="btn btn-danger" style="margin-left : 22% ; float : left ; width: 16% ;height: 50px; font-size: 18px">Sai/Không/Trái</button>
+    <button type="submit"  name = "yes" value= "yes" class="btn btn-primary" style="margin-right : 22% ; float : right ; width: 16%;height: 50px; font-size: 18px">Đúng/Có/Phải</button>
+    </form>
+    <div style="text-align: center ; margin-top: 10%">
+    <a href= "/question/{{link}}" +  type="button" class="btn btn-default">Kết Quả Vote</a>
+    <a href="/" type="button" class="btn btn-default">Câu hỏi Khác</a>
+    </div>
+</div>

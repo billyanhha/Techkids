@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-
+app.use(express.static('public'));
 app.get('/ask', (req, res) => {
     res.render('ask');
 });
