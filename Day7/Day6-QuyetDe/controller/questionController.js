@@ -1,10 +1,14 @@
 const QuestionSchema = require("../models/questionSchema");
-let create = (question) => {
+let create = (question , err) => {
     let newQuestion = {
         questionContent : question,
         
     }
-    QuestionSchema.create(newQuestion);
+    QuestionSchema.create(newQuestion , (error)=>{
+        if(error) console.log(error);
+        err()
+    }
+);
     
     
 };

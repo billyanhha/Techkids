@@ -8,17 +8,21 @@ Router.get('/', (req, res) => {
 
 Router.post('/', (req, res) => {
     try {
-        controller.create(req.body.ask);
-        QuestionSchema.find({}, (err, data) => {
-            if (err) console.log(err);
-
-            arr = data;
-            
-            let id = arr.length-1
-            res.redirect('/question/' + arr[id]._id)
-
-            }
-        )
+        controller.create(req.body.ask, () =>{
+            QuestionSchema.find({}, (err, data) => {
+                if (err) console.log(err);
+    
+                arr = data;
+                
+                let id = arr.length -1;
+                console.log(id);
+                
+                res.redirect('/question/' + arr[id]._id)
+    
+                }
+            )
+        });
+        
     } catch (ex) {
         console.log(ex);
     }
