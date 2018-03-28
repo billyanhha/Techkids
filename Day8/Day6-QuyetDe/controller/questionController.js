@@ -13,51 +13,44 @@ let create = (question , err) => {
     
 };
 
-let getQuestions = (callback) => {
-    questionSchema.find((err, data) => {
-        callback(err, data);
+let getQuestionByID = (id, callback) =>{
+    QuestionSchema.findOne({"_id": id}, (err, doc) =>{
+        callback(err,doc);
+     });
+};
+
+let getAllQuestion = (callback) =>{
+    QuestionSchema.find((err, docs) =>{
+        if (err) console.error(err);
+        callback(docs);
     });
 };
 
-let getQuestionByID = (id, callback) => {
-    questionSchema.findById(id, (err, data) => {
-        callback(err, data);
-    });
+let findRandom = (callback)=>{
+    QuestionSchema.count().exec((err,length)=>{
+        if(err) callback(err)
+        else{
+            QuestionSchema.findOne().skip(Math.floor(Math.random()*length))
+            .exec((errRandom,doc)=>{
+                callback(errRandom,doc);
+            })
+        }
+    })
 };
 
-let updateQuestionByID = (id, bool, yesVal, noVal, callback) => {
-    if (bool == 1) {
-        questionSchema.findByIdAndUpdate(id, {
-            yes: yesVal + 1
-        }, (err) => {
-            callback(err);
-        });
-    }
-    if (bool == 0) {
-        questionSchema.findByIdAndUpdate(id, {
-            no: noVal + 1
-        }, (err) => {
-            callback(err);
-        });
-    }
-};
-
-let getRandom = (callback) => {
-    questionSchema.count().exec((err, count) => {
-
-        var random = Math.floor(Math.random() * count);
-
-        questionSchema.findOne().skip(random).exec(
-            (err, result) => {
-                callback(err, result);
+let updateAnswer = (answer, id, callback)=>{
+    if(answer){
+        getQuestionByID(id, (err,doc) =>{
+            QuestionSchema.findByIdAndUpdate(id, {yes: doc.yes + 1}, (err) =>{
+                callback(err);
             });
-    });
-};
-
-module.exports = {
-    create,
-    getQuestions,
-    getQuestionByID,
-    updateQuestionByID,
-    getRandom
-};
+        });
+    }else{
+        getQuestionByID(id, (err,doc) =>{
+            QuestionSchema.findByIdAndUpdate(id, {no: doc.no + 1}, (err) =>{
+               callback(err);
+            });
+        });
+    }
+}
+module.exports = {create,getAllQuestion,getQuestionByID,updateAnswer}

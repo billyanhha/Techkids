@@ -1,6 +1,6 @@
-<div class="container" id="sol">
+<div class="container" id="ss">
     <h1 id="questionAJAX" style="text-align: center ; margin-top : 7% ; padding-bottom: 5%">{{question}}</h1>
-    <form action="/ques/{{link}}" method="post" name="answer" class="form-group">
+    <form action="/ques/{{link}}" method="post" id="form" name="answer" class="form-group"  >
         <input type="hidden" value="{{k}}" name="ss">
         <button type="submit" id="bossno" name="no" value="no" class="btn btn-danger" style="margin-left : 22% ; float : left ; width: 16% ;height: 50px; font-size: 18px">
             <span class="glyphicon glyphicon-thumbs-down"></span>&nbspSai/Không/Trái</button>
@@ -9,22 +9,23 @@
     </form>
     <div style="text-align: center ; margin-top: 10%">
         <a href="/question/{{link}}" + type="button" class="btn btn-default">Kết Quả Vote</a>
-        <button onclick="ajax()" class="btn btn-default">Câu hỏi Khác</button>
+        <button onclick="ajaxs()" class="btn btn-default">Câu hỏi Khác</button>
     </div>
 </div>
 <script>
-    
-
-    function ajax() {
+   
+    function ajaxs() {
         $.ajax({
             url: '/',
             method: "post",
             success: function (response) {
-                
+                console.log("ok");
                 $("#questionAJAX").html("" + response.question.questionContent);
-                question= response.question;
+            
+                 $("#form").attr('action', "/ques/"+response.question._id);
                 //console.log(response.question._id)
             }
         })
+
     }
 </script>
