@@ -2,6 +2,7 @@ const express = require('express');
 let Router = express.Router();
 const controller = require('../controller/questionController')
 const QuestionSchema = require("../models/questionSchema");
+var k ;
 Router.get('/', (req, res) => {
     // let questionlist = controller
     try {
@@ -39,10 +40,12 @@ Router.post('/', (req, res) => {
         arr = data;
         
         let id = Math.floor((Math.random() * arr.length));
+    
         if (arr.length > 0) {
             let question = arr[id];
             res.json({
-                question
+                question,
+                 id ,
             })
         } else {
             res.render('nothing');
