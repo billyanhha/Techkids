@@ -8,7 +8,7 @@
             <span class="glyphicon glyphicon-thumbs-up"></span> &nbspĐúng/Có/Phải</button>
     </form>
     <div style="text-align: center ; margin-top: 10%">
-        <a href="/question/{{link}}" id="ss3" type="button" class="btn btn-default">Kết Quả Vote</a>
+        <a href="/question/{{link}}"  type="button" class="btn btn-default">Kết Quả Vote</a>
         <button onclick="ajaxs()" class="btn btn-default">Câu hỏi Khác</button>
     </div>
 </div>
@@ -24,11 +24,14 @@
             method: "post",
             success: function (response) {
                 console.log("ok");
-                $("#questionAJAX").html("" + response.question.questionContent);
-                
+                 $("#questionAJAX").html("" + response.question.questionContent);
+                 $('a').on('click', function (e) {
+                        $(this).attr("href", "/question/"+response.question._id);
+                })
+          
                  $("#form").attr('action', "/ques/"+response.question._id);
                  $("#ssid").attr('value', response.id);
-                 //$("#ss3").attr('href', "/question/"+response.question._id));
+
                 //console.log(response.question._id)
             }
         })
