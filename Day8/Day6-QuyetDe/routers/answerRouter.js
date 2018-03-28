@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 var ObjectID = require('mongoose').ObjectID
 let Router = express.Router();
-const controller = require('../controller/questionController')
+const QuestionController = require('../controller/questionController')
 const QuestionSchema = require("../models/questionSchema");
 Router.post('/:id', (req, res) => {
         try {
@@ -11,7 +11,6 @@ Router.post('/:id', (req, res) => {
             QuestionSchema.find({}, (err, data) => {
                 if (err) console.log(err);
                 arr = data;
-                //console.log(arr[0]._id);
                 let k = req.body.ss;
                 
                 

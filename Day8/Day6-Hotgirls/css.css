@@ -1,0 +1,138 @@
+.header{
+    box-sizing: border-box;
+    padding-top:20px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+
+input[type=text] {
+    width: 250px;
+    height: 35px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    padding-left: 5px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    position: relative;
+}
+
+input[type=text]:active{
+    border: cyan
+}
+
+.center{
+    box-sizing: border-box;
+    padding-left : 10%;
+    display: inline;
+    align-items: center;display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    align-items: center;
+}
+
+.center span{
+    font-size: 28px;
+}
+
+ul.pagination li{
+    font-size: 18px;
+    background-color: springgreen;
+}
+
+div.file{
+    background-color: white;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    position: relative;  
+    filter: brightness(100%);
+    transition: 1s ease;
+    
+}
+div.file img{
+    width: 100%;
+    height: auto;
+}
+div.contain{
+    background-color: white;
+    height: inherit;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px
+}
+div.contain span{
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+div.contain span.name{
+    font-size: 13px;
+    color: grey;
+}
+div.contain p{
+    font-size: 15px;
+    padding-left: 10px;
+}
+
+div.circle{
+    max-width: 40%;
+    float: left;
+    width: 50px;
+    height: 50px;
+    background-color: gray;
+    border-radius: 100%;
+}
+
+div.description{
+    position: absolute;
+    opacity: 0;
+    color:white;
+    transition: 0.5s ease;
+    top: 0;
+    left: 10px;
+    width: inherit;
+    height: fit-content;
+}
+
+div.file:hover div.description{
+    opacity: 1;
+}
+
+div.file img:hover {
+    filter: brightness(50%);
+}
+
+div.moretop{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top:5px;
+    background-color: white;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.morebottom{
+    width: 30px;
+    height: 30px;
+    top : 40px;
+    position: absolute;
+    left: 8px;
+    
+}
+
+@media only screen and (max-width: 920px) {
+    .left input{
+        width: 96%;
+    }
+    .center img{
+        padding-left:20% ;
+
+    }
+    .right{
+        width: 100%;
+        text-align: center;
+    }
+}

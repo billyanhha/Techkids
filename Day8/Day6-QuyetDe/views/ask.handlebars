@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="form-group">
+        <h1>Hãy hỏi cộng đồng một câu hỏi đúng/sai hoặc có/không</h1>
+        <form method="post" name="ask">
+            <textarea name="ask" id="text" cols="100" class="form-control" rows="10" maxlength="200"></textarea>
+            <p>Còn <span id="character">200</span> / 200 kí tự</p>
+            <button type="submit" class="btn btn-primary" >Gửi </button>
+        </form>       
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+    $("form").submit(function(){
+        alert("Form has been sent");
+        
+    })
+});
+</script>
