@@ -76,12 +76,10 @@ div.contain p{
     padding-left: 10px;
 }
 
-div.circle{
-    max-width: 40%;
+div.circle img{
     float: left;
     width: 50px;
     height: 50px;
-    background-color: gray;
     border-radius: 100%;
 }
 
@@ -96,13 +94,22 @@ div.description{
     height: fit-content;
 }
 
+
 div.file:hover div.description{
     opacity: 1;
+   
 }
 
-div.file img:hover {
+div.file:hover  img{
     filter: brightness(50%);
+    
 }
+/* div.contain:hover div.file img{
+    filter: brightness(50%);
+    
+} */
+
+
 
 div.moretop{
     width: 30px;
@@ -121,6 +128,9 @@ div.morebottom{
     position: absolute;
     left: 8px;
     
+}
+.ok:active{
+    color: red
 }
 
 @media only screen and (max-width: 920px) {
