@@ -9,23 +9,18 @@ let create = (question , err) => {
         err()
     }
 );
-    
-    
 };
-
 let getQuestionByID = (id, callback) =>{
     QuestionSchema.findOne({"_id": id}, (err, doc) =>{
         callback(err,doc);
      });
 };
-
 let getAllQuestion = (callback) =>{
     QuestionSchema.find((err, docs) =>{
         if (err) console.error(err);
         callback(docs);
     });
 };
-
 let findRandom = (callback)=>{
     QuestionSchema.count().exec((err,length)=>{
         if(err) callback(err)
@@ -37,6 +32,7 @@ let findRandom = (callback)=>{
         }
     })
 };
+
 
 let updateAnswer = (answer, id, callback)=>{
     if(answer){

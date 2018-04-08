@@ -13,12 +13,7 @@
     </div>
 </div>
 <script>
-   
     function ajaxs() {
-
-
-
-
         $.ajax({
             url: '/',
             method: "post",
@@ -28,13 +23,10 @@
                  $('a').on('click', function (e) {
                         $(this).attr("href", "/question/"+response.question._id);
                 })
-          
                  $("#form").attr('action', "/ques/"+response.question._id);
                  $("#ssid").attr('value', response.id);
-
                 //console.log(response.question._id)
             }
         })
-
     }
 </script>
