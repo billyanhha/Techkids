@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const express = require('express');
 var ObjectID = require('mongoose').ObjectID
@@ -12,51 +11,36 @@ Router.post('/:id', (req, res) => {
                 if (err) console.log(err);
                 arr = data;
                 let k = req.body.ss;
-                
-                
-                if (req.body.yes == "yes") {                    
-                    QuestionSchema.update(
-                    {_id : arr[k]._id},
-                    {$set :
-                    {yes : arr[req.body.ss].yes +1},
-            
-                    
-                    }, (err)=>{
-                        console.log(err);
-                        console.log("Update sucessful");
-                        
-                        
+
+
+                if (req.body.yes == "yes") {
+                    QuestionController.updateAnswer("yes", arr[k]._id, (err) => {
+                        if (err) console.log(err);
+                        res.redirect('/question/' + (req.params.id));
                     })
-    
-                    res.redirect('/question/' + (req.params.id));
                 }
                 if (req.body.no == "no") {
-                    QuestionSchema.update({_id : arr[k]._id},
-                    {$set :
-                    {no : arr[req.body.ss].no +1}
-                    } ,  (err)=>{
-                        console.log(err);
-                        console.log("Update sucessful");
-                        
-                        
+                    QuestionController.updateAnswer("no", arr[k]._id, (err) => {
+                        if (err) console.log(err);
+                        res.redirect('/question/' + (req.params.id));
                     })
-                    res.redirect('/question/' + (req.params.id));
-           
+
+
                 }
 
 
 
 
-                })
-            
-            
+            })
+
+
         } catch (ex) {
             console.log(ex);
 
         }
 
 
-        
+
 
     }),
 

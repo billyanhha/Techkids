@@ -1,5 +1,5 @@
 const QuestionSchema = require("../models/questionSchema");
-let create = (question , err) => {
+let create = (question , callback) => {
     let newQuestion = {
         questionContent : question,
         
