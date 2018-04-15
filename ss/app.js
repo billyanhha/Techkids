@@ -24,7 +24,6 @@ app.post('/', (req, res) => {
         if (err) console.log(err);
         res.redirect("/games/" + doc._id);
     })
-
 })
 app.get('/games/:id', (req, res) => {
     controller.findPlayerByID(req.params.id, (err, doc) => {
