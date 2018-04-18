@@ -1,0 +1,48 @@
+
+.nav{
+    float: left;
+    width: 200px;
+    height: 700px;
+    color:black;
+    
+    background-color: #DAE8FC;
+    
+}
+.nav p{
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    
+}
+.aside{
+    position: relative;
+    width: 200px;
+    height: 700px;
+    color:black;
+    float: right;
+    background-color: #DAE8FC;
+}
+.aside p{
+    padding-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.center{
+    margin-left:200px;
+    background-color: #B3B3B3;
+    margin-right: 200px;
+    position: relative;
+}
+.center p{
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+.centerInherit{
+    margin-top:-15px;
+    position: absolute;
+    background-color: #66FFFF;
+    
+}

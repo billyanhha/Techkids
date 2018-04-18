@@ -1,0 +1,32 @@
+*{
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+}
+.article{
+    min-height: 100%;
+    display: flex;
+    
+    
+}
+.col1{
+    flex-basis: 25%;
+    background-color: rgb(139, 34, 34);
+    padding: 10px;
+}
+.col2{
+    flex-basis: 25%;
+    background-color: rgb(37, 0, 37);
+    padding: 10px;
+}
+.col3{
+    flex-basis: 25%;
+    background-color: rgb(34, 36, 139);
+    padding: 10px;
+}
+.col4{
+    flex-basis: 25%;
+    background-color: rgb(139, 34, 34);
+    padding: 10px;
+}

@@ -2,6 +2,22 @@ const mongoose = require('mongoose');
 
 
 const Schema = mongoose.Schema;
+
+const commentModel = new Schema({
+    createdBy: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    },
+}, {
+    timestamps: {
+        createdAt: "createdAt"
+    }
+});
+
 const imageModel = new Schema({
     imageUrl: {
         type: String,
@@ -15,7 +31,7 @@ const imageModel = new Schema({
         type: String,
         default: ''
     },
-    createBy: {
+    createdBy: {
         type: String,
         required: true
     },
@@ -27,7 +43,7 @@ const imageModel = new Schema({
         type: Number,
         default: 0
     },
-    actice: {
+    active: {
         type: Boolean,
         default: true
     },
@@ -36,13 +52,10 @@ const imageModel = new Schema({
         default: []
     }
 }, {
-    timestamps: true
+    timestamps: {
+        createdAt: "createdAt"
+    }
 });
 
-const commentModel = new Schema({
-    createBy : {type : String}
-},
-    {timestamps : true}
-);
 
-module.exports = mongoose.model("images" , imageModel)
+module.exports = mongoose.model("images", imageModel)
