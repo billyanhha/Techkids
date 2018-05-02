@@ -1,0 +1,6 @@
+{
+    "mongoPath" : "mongodb://localhost:27017/tk-hotgirls",
+    "sessionSecret" : "himitsu",
+    "secureCokkie" : false
+}
+

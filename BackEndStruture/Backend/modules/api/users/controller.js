@@ -26,7 +26,7 @@ const getAllUser = page =>
             })
             .skip((page - 1) * 20)
             .limit(20)
-            .select("_id Username Email Avatar createdAt")
+            .select("_id Username Email Avatar createdAt Password")
             .exec()
             .then(data => resolve(data))
             .catch(err => reject(err));
@@ -118,6 +118,15 @@ const getOneUser = id =>
         ))
         .catch(err => reject(err));
     });   
+
+const getUserForAuth = username =>
+    new Promise((resolve , reject) => {
+        usermodel.findOne({Username : username})
+        .select("Username Password _id")
+        .then(user => resolve(user))
+        .catch(err => reject(err))
+});
+
 module.exports = {
     createUser,
     getAllUser,
@@ -125,4 +134,5 @@ module.exports = {
     updateUserName,updateEmail
     ,updateAvatar , updatePassWord
     ,deleteUser
+    ,getUserForAuth
 }

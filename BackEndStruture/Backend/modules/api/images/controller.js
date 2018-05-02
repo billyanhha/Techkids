@@ -30,7 +30,7 @@ const getAllImages = page => // Get all Image
       .exec()
       .then(data => resolve(data))
       .catch(err => reject(err));
-  });
+});
 
 const updateImage = (id, { imageUrl, title,description}) => //Update
   new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@ const updateImage = (id, { imageUrl, title,description}) => //Update
         id: id
       }))
       .catch(err => reject(err));
-  });
+});
 
 const deleteImage = id => //Delete image
   new Promise((resolve, reject) => {
@@ -60,7 +60,7 @@ const deleteImage = id => //Delete image
         id: id
       }))
       .catch(err => reject(err));
-  });
+});
 
 const getImage = id => //Get one image
   new Promise((resolve, reject) => {
