@@ -10,8 +10,6 @@ class App extends Component {
     initializing: true,
     players: []
   }
-
-
   _onCreateGame = (players) => {
     this.setState({
       initializing: false,
