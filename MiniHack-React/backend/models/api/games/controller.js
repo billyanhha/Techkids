@@ -58,20 +58,9 @@ const getAllInfo = (gameId) =>
             .then(data => resolve(data))
             .catch(err => reject(err))
     })
-const addRound = (gameId) =>
-    new Promise((resolve, reject) => {
-        gamesModel.update({ _id: gameId },
-            {
-                $inc: { rowNumber: 1 } 
-            }
-        )
-            .then(data => resolve(data))
-            .catch(err => reject(err))
-    })
 
 module.exports = {
     createGame,
     upDateGame,
     getAllInfo,
-    addRound,
 }

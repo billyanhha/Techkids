@@ -8,13 +8,11 @@ import { BrowserRouter, Route } from 'react-router-dom'
 class App extends Component {
   state = {
     initializing: true,
-    players: [],
     id: "",
   }
   _onCreateGame = async (players) => {
     await this.setState({
       initializing: false,
-      players: players
     });
 
     axios.post('http://localhost:6969/api/games', {
@@ -36,7 +34,7 @@ class App extends Component {
             return <Home {...props} onCreateGame={this._onCreateGame} gameId={this.state.id} />
           }} />
           <Route path="/games/:id" render={(props) => {
-            return <Game {...props} playersName={this.state.players} id={this.state.id} />
+            return <Game {...props}  id={this.state.id} />
           }} />
         </div>
       </BrowserRouter>

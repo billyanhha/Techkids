@@ -4,6 +4,7 @@ import axios from 'axios'
 class Game extends Component {
     state = {
         rowGame: Number,  //state for Row Game
+        playerName: [],
         score1: [],
         score2: [],
         score3: [],
@@ -17,9 +18,12 @@ class Game extends Component {
     componentDidMount() {
         axios.get(`http://localhost:6969/api/games/${this.props.match.params.id}`)
             .then(data => {
+                console.log(data.data);
+
                 if (data.data) {
                     this.setState({
-                        rowGame: data.data.rowNumber,
+                        rowGame: Math.max(data.data.score_1.length, data.data.score_2.length, data.data.score_3.length, data.data.score_4.length),
+                        playerName: [data.data.playerName1, data.data.playerName2, data.data.playerName3, data.data.playerName4],
                         score1: data.data.score_1,
                         score2: data.data.score_2,
                         score3: data.data.score_3,
@@ -28,7 +32,7 @@ class Game extends Component {
                         sum_1: data.data.sum_1,
                         sum_2: data.data.sum_2,
                         sum_3: data.data.sum_3,
-                    }, () => { console.log(this.state.rowGame); })
+                    }, () => { console.log(this.state.playerName); })
                 }
 
 
@@ -42,10 +46,6 @@ class Game extends Component {
         this.setState({
             rowGame: arr
         });
-        axios.put(`http://localhost:6969/api/games/${this.props.match.params.id}/addRound`)
-            .then(data => this.setState({ id: data.data._id }))
-
-            .catch(err => console.log(err))
     }
     _onCalScore_1 = async (index, score) => {
         let arr_1 = this.state.score1;
@@ -169,9 +169,11 @@ class Game extends Component {
 
     render() {
         // Functional Programming >< OOP
-        const player = this.props.playersName.map(function (value, index) {
+
+        const player =  this.state.playerName.map(function (value, index) {
             return (<th key={index}>  {value.length === 0 ? "Player" + " " + (index + 1) : value} </th>);
         })
+
         var _self = this;
         const rowGame = Array.apply(null, Array(this.state.rowGame)).map(function (value, index) {
             return (<RowGame key={index} index={index} score1={_self.state.score1[index]} score2={_self.state.score2[index]} score3={_self.state.score3[index]} score4={_self.state.score4[index]} onCalScore_1={_self._onCalScore_1} onCalScore_2={_self._onCalScore_2} onCalScore_3={_self._onCalScore_3} onCalScore_4={_self._onCalScore_4} roundNumber={"Round " + (index + 1)} />);
@@ -181,7 +183,7 @@ class Game extends Component {
         return (
             <div className="container game">
                 <h1 className="header">ScoreKeeper</h1>
-                <hr style ={{marginTop : "0"}}/>
+                <hr style={{ marginTop: "0" }} />
                 <form className="has-feedback">
                     <table className="playerTable table table-striped">
                         <thead>
@@ -205,8 +207,8 @@ class Game extends Component {
                             {rowGame}
                         </tbody>
                     </table>
-                    <button className="btn button"  onClick={this.add}>
-                            Add round
+                    <button className="btn button" onClick={this.add}>
+                        Add round
                     </button>
                 </form>
             </div>

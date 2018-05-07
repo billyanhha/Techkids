@@ -23,12 +23,6 @@ router.put('/:id' , (req , res) =>{
     .catch(error => console.log(error)
     )
 })
-router.put('/:id/addRound' , (req , res) =>{
-    gamesController.addRound(req.params.id)
-    .then(data => res.send(data))
-    .catch(error => console.log(error)
-    )
-})
 
 
 
