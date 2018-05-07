@@ -5,7 +5,7 @@ class Game extends Component {
     state = {
         rowGame: Number,  //state for Row Game
         playerName: [],
-        score : [[] , [] , [] , []],
+        score : [ [] , [] , [] , []],
         sum : [0 , 0 , 0 , 0],
     }
 
@@ -22,7 +22,7 @@ class Game extends Component {
                         sum : [data.data.sum_1  , data.data.sum_2 , data.data.sum_3 , data.data.sum_4 ]
                     }, () => { console.log(this.state.playerName); })
                 }
-            })
+        })
     }
 
     add = e => {
@@ -35,7 +35,7 @@ class Game extends Component {
     }
     _onCalScore = async (index , key , score) => {
         let arr_1 = this.state.score[key];
-        let arr_score = this.state.score
+        let arr_score = this.state.score;
         for (let i = 0; i < index; i++) {
             if (!arr_1[i]) arr_1[i] = 0;
         }
@@ -75,6 +75,7 @@ class Game extends Component {
         })
 
         const rowGame = Array.apply(null, Array(this.state.rowGame)).map( (value, index) => {
+            if(this.state.score[0].length === 0) return ;
             return (<RowGame key={index}  score = {this.state.score} onCalScore={this._onCalScore} index ={index} roundNumber={"Round " + (index + 1)} />);
         })
 
@@ -83,7 +84,7 @@ class Game extends Component {
                 <h1 className="header">ScoreKeeper</h1>
                 <hr style={{ marginTop: "0" }} />
                 <form className="has-feedback">
-                    <table className="playerTable table table-striped">
+                    <table className="playerTable table table-striped" style ={{tableLayout: "fixed"}}>
                         <thead>
                             <tr>
                                 <th></th>
