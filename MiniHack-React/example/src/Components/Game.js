@@ -16,11 +16,11 @@ class Game extends Component {
 
                 if (data.data) {
                     this.setState({
-                        rowGame: Math.max(data.data.score_1.length, data.data.score_2.length, data.data.score_3.length, data.data.score_4.length),
+                        rowGame: Math.max(data.data.score_1.length, data.data.score_2.length, data.data.score_3.length, data.data.score_4.length , 5),
                         playerName: [data.data.playerName1, data.data.playerName2, data.data.playerName3, data.data.playerName4],
                         score : [data.data.score_1 , data.data.score_2  , data.data.score_3  , data.data.score_4],
                         sum : [data.data.sum_1  , data.data.sum_2 , data.data.sum_3 , data.data.sum_4 ]
-                    }, () => { console.log(this.state.playerName); })
+                    })
                 }
         })
     }
@@ -36,7 +36,9 @@ class Game extends Component {
     _onCalScore = async (index , key , score) => {
         let arr_1 = this.state.score[key];
         let arr_score = this.state.score;
-        for (let i = 0; i < index; i++) {
+        console.log(arr_score);
+        
+        for (let i = 1; i < index; i++) {
             if (!arr_1[i]) arr_1[i] = 0;
         }
         arr_1[index] = score;
@@ -44,7 +46,7 @@ class Game extends Component {
         await this.setState({ score : arr_score });
         let total = 0;
         let arr = this.state.score[key];
-        for (let i = 0; i < arr.length; i++) {
+        for (let i = 1; i < arr.length; i++) {
             total += arr[i];
         }
         let arr_sum = this.state.sum;
@@ -73,10 +75,10 @@ class Game extends Component {
         const player =  this.state.playerName.map((value, index) => {
             return (<th key={index}>  {value.length === 0 ? "Player" + " " + (index + 1) : value} </th>);
         })
-
-        const rowGame = Array.apply(null, Array(this.state.rowGame)).map( (value, index) => {
-            if(this.state.score[0].length === 0) return ;
-            return (<RowGame key={index}  score = {this.state.score} onCalScore={this._onCalScore} index ={index} roundNumber={"Round " + (index + 1)} />);
+        const Arr =  Array.apply(null, Array(this.state.rowGame));
+        const rowGame = Arr.map( (value, index) => {
+            if(index !== 0)
+            return (<RowGame key={index}  score = {this.state.score} onCalScore={this._onCalScore} index ={index} roundNumber={"Round " + (index)} />);
         })
 
         return (

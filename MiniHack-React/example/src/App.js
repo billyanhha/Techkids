@@ -14,10 +14,10 @@ class App extends Component {
     await this.setState({
       initializing: false,
     });
-    players[0] ? players[0] : players[0] = "Player1"
-    players[1] ? players[1] : players[1] = "Player2"
-    players[2] ? players[2] : players[2] = "Player3"
-    players[3] ? players[3] : players[3] = "Player4"
+    if(!players[0])  players[0] = "Player1"
+    if(!players[1])  players[1] = "Player2"
+    if(!players[2])  players[2] = "Player3"
+    if(!players[3])  players[3] = "Player4"
     axios.post('http://localhost:6969/api/games', {
       playerName_1: players[0],
       playerName_2: players[1],
@@ -28,6 +28,7 @@ class App extends Component {
 
       .catch(err => console.log(err))
   }
+
   render() {
     return (
       // this.state.initializing ? <Home onCreateGame={this._onCreateGame} /> : <Game playersName={this.state.players} id = {this.state.id} />

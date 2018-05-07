@@ -12,7 +12,6 @@ class RowGame extends Component {
     
 
     render() {
-        // console.log(this.props.score[0]);
         
         return (
             <tr>
