@@ -5,14 +5,8 @@ class Game extends Component {
     state = {
         rowGame: Number,  //state for Row Game
         playerName: [],
-        score1: [],
-        score2: [],
-        score3: [],
-        score4: [],
-        sum_4: 0,
-        sum_1: 0,
-        sum_2: 0,
-        sum_3: 0,
+        score : [[] , [] , [] , []],
+        sum : [0 , 0 , 0 , 0],
     }
 
     componentDidMount() {
@@ -24,18 +18,10 @@ class Game extends Component {
                     this.setState({
                         rowGame: Math.max(data.data.score_1.length, data.data.score_2.length, data.data.score_3.length, data.data.score_4.length),
                         playerName: [data.data.playerName1, data.data.playerName2, data.data.playerName3, data.data.playerName4],
-                        score1: data.data.score_1,
-                        score2: data.data.score_2,
-                        score3: data.data.score_3,
-                        score4: data.data.score_4,
-                        sum_4: data.data.sum_4,
-                        sum_1: data.data.sum_1,
-                        sum_2: data.data.sum_2,
-                        sum_3: data.data.sum_3,
+                        score : [data.data.score_1 , data.data.score_2  , data.data.score_3  , data.data.score_4],
+                        sum : [data.data.sum_1  , data.data.sum_2 , data.data.sum_3 , data.data.sum_4 ]
                     }, () => { console.log(this.state.playerName); })
                 }
-
-
             })
     }
 
@@ -47,138 +33,50 @@ class Game extends Component {
             rowGame: arr
         });
     }
-    _onCalScore_1 = async (index, score) => {
-        let arr_1 = this.state.score1;
+    _onCalScore = async (index , key , score) => {
+        let arr_1 = this.state.score[key];
+        let arr_score = this.state.score
         for (let i = 0; i < index; i++) {
             if (!arr_1[i]) arr_1[i] = 0;
         }
         arr_1[index] = score;
-        console.log(arr_1);
-        await this.setState({ score1: arr_1 });
+        arr_score[key] = arr_1
+        await this.setState({ score : arr_score });
         let total = 0;
-        let arr = this.state.score1;
+        let arr = this.state.score[key];
         for (let i = 0; i < arr.length; i++) {
             total += arr[i];
         }
-        this.setState({ sum_1: total });
-        console.log(total + " " + this.state.sum_1);
+        let arr_sum = this.state.sum;
+        arr_sum[key] = total;
+        this.setState({ sum: arr_sum });
+        console.log(total + " " + this.state.sum[key]);
         axios.put(`http://localhost:6969/api/games/${this.props.match.params.id}`, {
-            score_1: this.state.score1,
-            score_2: this.state.score2,
-            score_3: this.state.score3,
-            score_4: this.state.score4,
-            sum_1: this.state.sum_1,
-            sum_2: this.state.sum_2,
-            sum_3: this.state.sum_3,
-            sum_4: this.state.sum_4,
+            score_1: this.state.score[0],
+            score_2: this.state.score[1],
+            score_3: this.state.score[2],
+            score_4: this.state.score[3],
+            sum_1: this.state.sum[0],
+            sum_2: this.state.sum[1],
+            sum_3: this.state.sum[2],
+            sum_4: this.state.sum[3],
         })
             .then(data => this.setState({ id: data.data._id }))
 
             .catch(err => console.log(err))
 
     }
-    _onCalScore_2 = async (index, score) => {
-        let arr_1 = this.state.score2;
-        for (let i = 0; i < index; i++) {
-            if (!arr_1[i]) arr_1[i] = 0;
-        }
-        arr_1[index] = score;
-        console.log(arr_1);
-        await this.setState({ score2: arr_1 });
-        let total = 0;
-        let arr = this.state.score2;
-        for (let i = 0; i < arr.length; i++) {
-            total += arr[i];
-        }
-        this.setState({ sum_2: total });
-        console.log(total + " " + this.state.sum_2);
-        axios.put(`http://localhost:6969/api/games/${this.props.match.params.id}`, {
-            score_1: this.state.score1,
-            score_2: this.state.score2,
-            score_3: this.state.score3,
-            score_4: this.state.score4,
-            sum_1: this.state.sum_1,
-            sum_2: this.state.sum_2,
-            sum_3: this.state.sum_3,
-            sum_4: this.state.sum_4,
-        })
-            .then(data => this.setState({ id: data.data._id }))
 
-            .catch(err => console.log(err))
-
-    }
-    _onCalScore_3 = async (index, score) => {
-        let arr_1 = this.state.score3;
-        for (let i = 0; i < index; i++) {
-            if (!arr_1[i]) arr_1[i] = 0;
-        }
-        arr_1[index] = score;
-        console.log(arr_1);
-        await this.setState({ score3: arr_1 });
-        let total = 0;
-        let arr = this.state.score3;
-        for (let i = 0; i < arr.length; i++) {
-            total += arr[i];
-        }
-        this.setState({ sum_3: total });
-        console.log(total + " " + this.state.sum_3);
-        axios.put(`http://localhost:6969/api/games/${this.props.match.params.id}`, {
-            score_1: this.state.score1,
-            score_2: this.state.score2,
-            score_3: this.state.score3,
-            score_4: this.state.score4,
-            sum_1: this.state.sum_1,
-            sum_2: this.state.sum_2,
-            sum_3: this.state.sum_3,
-            sum_4: this.state.sum_4,
-        })
-            .then(data => this.setState({ id: data.data._id }))
-
-            .catch(err => console.log(err))
-    }
-    _onCalScore_4 = async (index, score) => {
-        let arr_1 = this.state.score4;
-        for (let i = 0; i < index; i++) {
-            if (!arr_1[i]) arr_1[i] = 0;
-        }
-        arr_1[index] = score;
-
-        console.log(arr_1);
-        await this.setState({ score4: arr_1 });
-        let total = 0;
-        let arr = this.state.score4;
-        for (let i = 0; i < arr.length; i++) {
-            total += arr[i];
-        }
-        this.setState({ sum_4: total });
-        console.log(total + " " + this.state.sum_4);
-        axios.put(`http://localhost:6969/api/games/${this.props.match.params.id}`, {
-            score_1: this.state.score1,
-            score_2: this.state.score2,
-            score_3: this.state.score3,
-            score_4: this.state.score4,
-            sum_1: this.state.sum_1,
-            sum_2: this.state.sum_2,
-            sum_3: this.state.sum_3,
-            sum_4: this.state.sum_4,
-        })
-            .then(data => this.setState({ id: data.data._id }))
-
-            .catch(err => console.log(err))
-    }
-
-    render() {
+    render(){
         // Functional Programming >< OOP
 
-        const player =  this.state.playerName.map(function (value, index) {
+        const player =  this.state.playerName.map((value, index) => {
             return (<th key={index}>  {value.length === 0 ? "Player" + " " + (index + 1) : value} </th>);
         })
 
-        var _self = this;
-        const rowGame = Array.apply(null, Array(this.state.rowGame)).map(function (value, index) {
-            return (<RowGame key={index} index={index} score1={_self.state.score1[index]} score2={_self.state.score2[index]} score3={_self.state.score3[index]} score4={_self.state.score4[index]} onCalScore_1={_self._onCalScore_1} onCalScore_2={_self._onCalScore_2} onCalScore_3={_self._onCalScore_3} onCalScore_4={_self._onCalScore_4} roundNumber={"Round " + (index + 1)} />);
+        const rowGame = Array.apply(null, Array(this.state.rowGame)).map( (value, index) => {
+            return (<RowGame key={index}  score = {this.state.score} onCalScore={this._onCalScore} index ={index} roundNumber={"Round " + (index + 1)} />);
         })
-
 
         return (
             <div className="container game">
@@ -198,10 +96,10 @@ class Game extends Component {
                                 color: "#ffffff"
                             }}>
                                 <td className="td"> Sum of Score</td>
-                                <td className="td"> {this.state.sum_1} </td>
-                                <td className="td"> {this.state.sum_2}</td>
-                                <td className="td"> {this.state.sum_3} </td>
-                                <td className="td"> {this.state.sum_4} </td>
+                                <td className="td"> {this.state.sum[0]} </td>
+                                <td className="td"> {this.state.sum[1]}</td>
+                                <td className="td"> {this.state.sum[2]} </td>
+                                <td className="td"> {this.state.sum[3]} </td>
                             </tr>
                             {/* <RowGame  onCalScore = {this._onCalScore} roundNumber = {"Round "} /> */}
                             {rowGame}
