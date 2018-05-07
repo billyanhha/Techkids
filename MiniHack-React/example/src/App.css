@@ -4,9 +4,15 @@
   font-family: Arial, Helvetica, sans-serif;
   
 }
+.has-error .form-control{
+  border-color :#D782A4;
+  border-radius: 7px;
+  background-color: #F9F9F9;
+}
 
 .header {
   margin-top: 5%;
+  font-weight: bold;
 }
 
 .col {
@@ -26,12 +32,42 @@
   background-color: #BF1363;
   border: none;
   color: #ffff;
-  transition: 0.2s ease-in-out;
+  transition: all 0.2s;
   outline: none;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+}
+span{
+  position: relative;
+  top:-1px;
+  left : 4px;
+  transition: 0.2s;
+}
+span::after{
+  position: relative;
+  content : "\00bb";
+  font-size: 15px;
+  color:#ffffff;
+  right : -20px;
+  opacity: 0;
+  transition: 0.5s;
 }
 .button:hover{
   color: #ffff;
-  box-shadow: 0 0 5px #000000;
+  box-shadow: 0 0 3px #000000;
+}
+.button:focus{
+  color: #ffff;
+  outline: none;
+}
+.button:hover span::after{
+  right : -3px;
+  opacity: 1;
+
+}
+.button:hover span{
+  left : -3px;
 }
 
 
