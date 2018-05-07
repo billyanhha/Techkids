@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const PlayerSchema = new Schema({
-    playerName1: { type: String, require: true},
-    playerName2: { type: String, require: true},
-    playerName3: { type: String, require: true},
-    playerName4: { type: String, require: true},
+    playerName1: { type: String, default : "Player1", require: true },
+    playerName2: { type: String, default : "Player2", require: true},
+    playerName3: { type: String, default : "Player3", require: true},
+    playerName4: { type: String, default : "Player4", require: true},
     score_1: { type: [], default: [0, 0, 0, 0] },
     score_2: { type: [], default: [0, 0, 0, 0] },
     score_3: { type: [], default: [0, 0, 0, 0] },
