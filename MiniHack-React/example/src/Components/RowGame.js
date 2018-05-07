@@ -52,16 +52,16 @@ class RowGame extends Component {
             <tr>
                 <td>{this.props.roundNumber}</td>
                 <td >
-                    <input name="round1" className="input" type="number" placeholder="0" value={this.props.score1} onChange={e => this.handleChangeText1(e.target.value)} />
+                    <input name="round1" className="input" type="number" placeholder="0" defaultValue={this.props.score1} onChange={e => this.handleChangeText1(e.target.value)} />
                 </td>
                 <td >
-                    <input name="round2" className="input" type="number" placeholder="0" value={this.props.score2} onChange={e => this.handleChangeText2(e.target.value)} />
+                    <input name="round2" className="input" type="number" placeholder="0" defaultValue={this.props.score2} onChange={e => this.handleChangeText2(e.target.value)} />
                 </td>
                 <td>
-                    <input name="round3" className="input" type="number" placeholder="0" value={this.props.score3} onChange={e => this.handleChangeText3(e.target.value)} />
+                    <input name="round3" className="input" type="number" placeholder="0" defaultValue={this.props.score3} onChange={e => this.handleChangeText3(e.target.value)} />
                 </td>
                 <td>
-                    <input name="round4" className="input" type="number" placeholder="0" value={this.props.score4} onChange={e => this.handleChangeText4(e.target.value)} />
+                    <input name="round4" className="input" type="number" placeholder="0" defaultValue={this.props.score4} onChange={e => this.handleChangeText4(e.target.value)} />
                 </td>
             </tr>
         )
