@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const gamesRouter = require('./models/api/games/router');
 const app = express();
+const config = require('../config-production.json');
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json({extended : false}));
 app.use((req, res, next) => {
@@ -25,7 +26,7 @@ app.get('/' , (res , req) =>{
     res.sendFile('./public/index.html')
 })
 
-mongoose.connect('mongodb://localhost:27017/game', (err)=>{
+mongoose.connect(config.mongoPath , (err)=>{
     if(err) console.log(err);
     console.log("Database connect success!");
 });
