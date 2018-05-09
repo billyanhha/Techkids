@@ -19,11 +19,11 @@ app.use((req, res, next) => {
   
 
 app.use('/api/games' , gamesRouter);
-// app.use(express.static('./public'));
+app.use(express.static('./public'));
 
-// app.get('/' , (res , req) =>{
-//     res.sendFile('./public/index.html')
-// })
+app.get('/' , (res , req) =>{
+    res.sendFile('./public/index.html')
+})
 
 mongoose.connect('mongodb://localhost:27017/game', (err)=>{
     if(err) console.log(err);
