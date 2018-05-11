@@ -10,7 +10,7 @@ class Game extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:6969/api/games/${this.props.match.params.id}`)
+        axios.get(`/api/games/${this.props.match.params.id}`)
             .then(data => {
                 console.log(data.data);
 
@@ -53,7 +53,7 @@ class Game extends Component {
         arr_sum[key] = total;
         this.setState({ sum: arr_sum });
         console.log(total + " " + this.state.sum[key]);
-        axios.put(`http://localhost:6969/api/games/${this.props.match.params.id}`, {
+        axios.put(`/api/games/${this.props.match.params.id}`, {
             score_1: this.state.score[0],
             score_2: this.state.score[1],
             score_3: this.state.score[2],

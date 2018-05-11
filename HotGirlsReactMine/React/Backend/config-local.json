@@ -1,0 +1,6 @@
+{
+    "mongoPath": "mongodb://localhost/hotgirls",
+    "sessionSecret" :"ok",
+    "secureCookie" : false
+
+}

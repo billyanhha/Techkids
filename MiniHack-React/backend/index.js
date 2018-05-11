@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const gamesRouter = require('./models/api/games/router');
 const app = express();
-const config = require('../config-production.json');
+const config = require('./config-production.json');
 app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json({extended : false}));
 app.use((req, res, next) => {
@@ -17,10 +17,9 @@ app.use((req, res, next) => {
     );
     next();
   });
-  
 
 app.use('/api/games' , gamesRouter);
-app.use(express.static('./public'));
+app.use("/", express.static('./public'));
 
 app.get('/' , (res , req) =>{
     res.sendFile('./public/index.html')
@@ -31,7 +30,7 @@ mongoose.connect(config.mongoPath , (err)=>{
     console.log("Database connect success!");
 });
 
-const port = process.env.port || 6969;
+const port = process.env.PORT  || 6969;
 
 app.listen(port , (err)=>{
     if(err) console.log(err);

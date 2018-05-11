@@ -18,7 +18,7 @@ class App extends Component {
     if(!players[1])  players[1] = "Player2"
     if(!players[2])  players[2] = "Player3"
     if(!players[3])  players[3] = "Player4"
-    axios.post('http://localhost:6969/api/games', {
+    axios.post('/api/games', {
       playerName_1: players[0],
       playerName_2: players[1],
       playerName_3: players[2],

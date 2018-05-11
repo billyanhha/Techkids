@@ -1,0 +1,5 @@
+{
+  "mongoPath": "Enter your mongopath here",
+  "sessionSecret": "Enter Secret here",
+  "secureCookie": "Set cookie to true on production"
+}

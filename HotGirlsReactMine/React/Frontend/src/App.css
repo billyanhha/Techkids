@@ -1,0 +1,292 @@
+body, html {
+  height: 100%;
+}
+.App{
+  height: 100%;
+}
+*{
+  box-sizing: border-box;
+  font-family: 'Pangolin', cursive;
+}
+body{
+  background-color: #babababa;
+}
+.btn{
+  border-radius: 0px;
+}
+.btn-default{
+  border-radius: 0px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-left: none;
+}
+.btn-primary{
+  border-radius: 0px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+
+.navbar{
+  background-color: #ffffff;
+}
+
+.logo{
+  text-align: center;
+}
+
+.imgHeader{
+  margin-top: 15px;
+  height: 25px;
+  width: auto;
+}
+.profile{
+  text-align: center;
+  margin-top : -10px;
+}
+.page-link{
+  height: 35px;
+  font-size: 15px;
+}
+
+li a.camera{
+  background-color: #7DCE82;
+  border: none;
+  transition: background-color 0.1s ease-in
+}
+
+
+
+/*  */
+.thumbnail {
+  padding: 1px;
+  overflow: hidden;
+}
+
+.circle{
+  display: flex;
+  align-items: center;
+  
+}
+.circle h3{
+  padding-left: 10px;
+}
+.caption p{
+  float: left;
+  padding-left: 20%;
+  text-align: left;
+}
+
+div.circle img{
+  float: left;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+
+}
+
+div.description{
+  position: absolute;
+  opacity: 0;
+  color:white;
+  transition: 0.5s ease;
+  top: 0;
+  left: 10px;
+  width: inherit;
+  height: fit-content;
+}
+
+.imagePosted{
+  position: relative;
+  transition: 0.2s ease-in-out;
+}
+/* .imagePosted:hover img{
+  filter: brightness(50%);
+} */
+
+.iconTop{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 20px;
+  opacity: 0;
+  color: #ffffff;
+  transition: 0.2s ease-in-out;
+}
+.imagePosted:hover .iconTop{
+  opacity: 1;
+  z-index: 1;
+  
+}
+.iconTop:hover{
+  top:2px;
+  transform: scale(1.2)
+}
+
+.buttonLogin{
+  margin-top:8%;
+  border-radius: 5px;
+  width: 90%;
+}
+
+.comment{
+  padding-left: 15%;
+}
+
+/* Login */
+#root{
+  height: 100%;
+}
+
+.login {
+  /* The image used */
+  background-image: url("http://backgroundcheckall.com/wp-content/uploads/2017/12/login-page-background-11.jpg");
+
+  /* Full height */
+  height: 100%; 
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.signup{
+  background-image: url("http://backgroundcheckall.com/wp-content/uploads/2017/12/login-page-background-11.jpg");
+
+  /* Full height */
+  height: 100%; 
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.form{
+  text-align: center;
+  border :1px solid #bababa;
+  border-radius: 12px;
+  height: 300px;
+  width: 250px;
+  padding : 12px;
+  box-sizing: border-box;
+  margin-top:10%;
+  position: relative;
+  transition: 0.3s ease-in-out;
+}
+
+.form img{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+.form h4{
+  float: left;
+  
+}
+.form input{
+  border:none;
+  height: 25px;
+  border-radius: 12px;
+  position: relative;
+  padding-left:10px;
+  width: 100%;
+}
+.form input:focus{
+  outline: none;
+  box-shadow : 0 0 5px  #8B2635;
+}
+.form button{
+  border-radius: 12px;
+}
+/* 
+signup */
+.form-signup{
+  text-align: center;
+  border :1px solid #bababa;
+  border-radius: 12px;
+  height: 428px;
+  width: 250px;
+  padding : 12px;
+  box-sizing: border-box;
+  margin-top:10%;
+  position: relative;
+}
+
+.form-signup img{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+}
+.form-signup h4{
+  float: left;
+  
+}
+.form-signup input{
+  border:none;
+  height: 25px;
+  border-radius: 12px;
+  text-align: center;
+  width: 100%;
+}
+.form-signup input:focus{
+  outline: none;
+  box-shadow : 0 0 5px  #8B2635;
+}
+.form-signup button{
+  border-radius: 12px;
+}
+.form-signup input[type="file"]{
+  border-radius: 12px;
+}
+.err{
+  position: absolute;
+  right: 10px;
+  top : 10px;
+  padding:10px 5px;
+  width: 20%;
+  height: auto;
+  border-radius: 12px;
+  background-color: #CA5E59;
+  font-weight: bold;
+  opacity: 0;
+  animation: fade-in 5s ease-in-out ;
+}
+@keyframes fade-in {
+  0% {opacity: 0;}
+  5% {opacity: 1;}
+  50% {opacity: 1;}
+  100%{opacity: 0;}
+}
+/*  animation: fade-in 2s ease-in-out;
+}
+
+
+@keyframes fade-in {
+  from {opacity: 0;}
+  to {opacity: 1;}
+} */
+.spanLogin{
+  display: inline-block;
+  position: relative;
+  transition: 0.2s ease-in-out;
+}
+.spanLogin::after{
+  position: absolute;
+  content: "\00bb\00bb";
+  right: 0px;
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+}
+ .btnLogin:hover .spanLogin{
+  padding-right: 5px;
+}
+.btnLogin:hover .spanLogin:after{
+  opacity: 1;
+  right:-7px;
+} 

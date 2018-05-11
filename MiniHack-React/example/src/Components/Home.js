@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
-
+import { Route, Redirect } from 'react-router-dom'
 class Home extends Component {
     //khai bao truoc de auto ko dien => player 1
     state = {
