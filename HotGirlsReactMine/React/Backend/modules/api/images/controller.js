@@ -2,11 +2,11 @@ const imageModel = require("./model");
 const fs = require('fs');
 const path = require('path');
 const createImage = ({
-    imageFile,
-    title,
-    description,
-    id
-  }) =>
+  imageFile,
+  title,
+  description,
+  id
+}) =>
   new Promise((resolve, reject) => {
     imageModel
       .create({
@@ -33,15 +33,16 @@ const getAllImages = page =>
       })
       .skip((page - 1) * 20)
       .limit(20)
-      .select("_id title description createdAt view like")
+      .select("_id title description createdAt view like comment")
+      .populate("comment.createdBy", "username avatarUrl")
       .populate("createdBy", "username avatarUrl")
       .exec()
       .then(data => {
         resolve(
-          data.map( img => 
-            
-            
-            Object.assign({}, img._doc, {imageUrl: `localhost:6969/api/images/${img._id}/data`})
+          data.map(img =>
+
+
+            Object.assign({}, img._doc, { imageUrl: `localhost:6969/api/images/${img._id}/data` })
           )
         )
       })
@@ -50,21 +51,22 @@ const getAllImages = page =>
   });
 
 
+
 const updateImage = (id, {
-    imageUrl,
-    title,
-    description
-  }) =>
+  imageUrl,
+  title,
+  description
+}) =>
   new Promise((resolve, reject) => {
     imageModel
       .update({
         _id: id
       }, {
-        imageUrl,
-        title,
-        description,
-        createdBy
-      })
+          imageUrl,
+          title,
+          description,
+          createdBy
+        })
       .then(data => resolve({
         id: data._id
       }))
@@ -75,11 +77,11 @@ const deleteImage = (id, userId) =>
   new Promise((resolve, reject) => {
     imageModel
       .update({
-        _id: id , 
-        createdBy : userId
+        _id: id,
+        createdBy: userId
       }, {
-        active: false
-      })
+          active: false
+        })
       .then(data => resolve({
         id: data._id
       }))
@@ -130,21 +132,21 @@ const getImageData = id =>
       .exec()
       .then(data => resolve(data))
       .catch(err => reject(err));
-});
+  });
 
-const addComment = (imageId, {id, content}) =>
+const addComment = (imageId, { id, content }) =>
   new Promise((resolve, reject) => {
     imageModel
       .update({
         _id: imageId
       }, {
-        $push: {
-          comment: {
-            createdBy : id,
-            content,
+          $push: {
+            comment: {
+              createdBy: id,
+              content,
+            }
           }
-        }
-      })
+        })
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
@@ -155,44 +157,77 @@ const deleteComment = (imageId, commentId) =>
       .update({
         _id: imageId
       }, {
-        $pull: {
-          comment: {
-            _id: commentId
+          $pull: {
+            comment: {
+              _id: commentId
+            }
           }
-        }
-      })
+        })
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
 
-const likeImage = imageId =>
+const likeImage = (imageId, id) =>
   new Promise((resolve, reject) => {
     imageModel
       .update({
         _id: imageId
       }, {
-        $inc: {
-          like: 1
-        }
-      })
+          $push: {
+            like: {
+              createdBy: id,
+            }
+          }
+        })
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
 
-const unlikeImage = imageId =>
+const getLike = (imageId, id) =>
+  new Promise((resolve, reject) => {
+    imageModel
+      .findOne({
+        _id: imageId, like: { $elemMatch: { createdBy: id } }
+      })
+
+      .then(data => resolve(data))
+      .catch(err => reject(err));
+  });
+
+const unlikeImage = (imageId, id) =>
   new Promise((resolve, reject) => {
     imageModel
       .update({
         _id: imageId
       }, {
-        $inc: {
-          like: -1
-        }
-      })
+          $pull: {
+            like: {
+              createdBy: id,
+            }
+          }
+        })
       .then(data => resolve(data))
       .catch(err => reject(err));
   });
+const getAllComment = id =>
+  new Promise((resolve, reject) => {
+    imageModel
+      .findOne({
+        active: true,
+        _id: id
+      })
+      .select("_id title description createdAt view like comment")
+      .populate("comment.createdBy", "username avatarUrl")
+      .populate("createdBy", "username avatarUrl")
+      .exec()
 
+      .then(data =>
+        resolve(
+          Object.assign({}, data._doc, { imageUrl: `localhost:6969/api/images/${id}/data` })
+        )
+      )
+      .catch(err => reject(err));
+  });
 module.exports = {
   createImage,
   getAllImages,
@@ -204,4 +239,6 @@ module.exports = {
   deleteComment,
   likeImage,
   unlikeImage,
+  getLike,
+  getAllComment,
 };

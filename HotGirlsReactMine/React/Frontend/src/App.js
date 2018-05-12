@@ -15,13 +15,17 @@ class App extends Component {
   _onLoggedIn = (e) =>{
     this.setState({username : e});
   }
+  componentDidMount(){
+    axios.get('/api/auth')
+    .then(username => this.setState({username : username.data}))
+    .catch(err => console.log(err))
+  }
   
 
   render() {
-
     return (
       // <SignUp/>
-
+      
       <BrowserRouter>
         <div className="App">
           <Route exact path="/" render={(props) =>
@@ -30,8 +34,8 @@ class App extends Component {
           <Route path="/images/:id" render={(props) =>
             <DetailScreen {...props} username={this.state.username} />
           } />
-          <Route path="/login" render={(props) => <Login {...props} onLoggedIn = {this._onLoggedIn}  />}
-          />
+          <Route path="/login" render={(props) => <Login {...props} onLoggedIn = {this._onLoggedIn}  />}/>
+          <Route path="/signUp" render={(props) => <SignUp {...props}   />}/>
         </div>
       </BrowserRouter>
     );

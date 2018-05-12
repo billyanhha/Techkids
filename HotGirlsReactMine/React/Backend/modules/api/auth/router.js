@@ -13,6 +13,12 @@ router.post("/", (req, res) => {
     .catch(error => res.status(500).send(error.err));
 });
 
+router.get("/", (req, res) => {
+  if(req.session.userInfo) res.send(req.session.userInfo.username);
+  else res.send('');
+});
+
+
 router.delete("/", (req, res) => {
   req.session.destroy();
   res.send("Logged out");

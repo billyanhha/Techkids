@@ -19,10 +19,10 @@ const userModel = new Schema(
       }
     },
     avatarUrl: {
-      type: String, default: "",
+      type: String, default: "https://sites.google.com/a/windermereprep.com/canvas/_/rsrc/1486400406169/home/unknown-user/user-icon.png?height=200&width=200",
       validate :{
         validator : function(value){
-          const regex = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+          const regex = /(https?:\/\/.*\.(?:png|jpg))/i;;
           return regex.test(value);
 
         } , 
@@ -33,6 +33,7 @@ const userModel = new Schema(
   },
   { timestamps: { createdAt: "createdAt" } }
 );
+
 
 userModel.pre("save", function (next) {
   if (!this.isModified("password")) { // TODO bug on update password

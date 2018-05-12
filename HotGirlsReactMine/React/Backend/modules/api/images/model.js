@@ -8,6 +8,12 @@ const commentModel = new Schema(
   },
   { timestamps: { createdAt: "createdAt" } }
 );
+const likeModel = new Schema(
+  {
+    createdBy: { type: Schema.Types.ObjectId, ref: "users", required: true },
+  },
+  { timestamps: { createdAt: "createdAt" } }
+);
 
 const imageModel = new Schema(
   {
@@ -17,7 +23,7 @@ const imageModel = new Schema(
     description: { type: String, default: "" },
     createdBy: { type: Schema.Types.ObjectId, ref: "users", required: true },
     view: { type: Number, default: 0 },
-    like: { type: Number, default: 0 },
+    like: { type: [likeModel]},
     active: { type: Boolean, default: true },
     comment: { type: [commentModel], default: [] }
   },

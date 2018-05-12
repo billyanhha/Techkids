@@ -3,22 +3,11 @@ import axios from '../axios'
 import GirlImage from '../components/GirlImage';
 
 class DetailScreen extends Component {
-    state = {
-       
-    }
-    componentDidMount() {
-        axios
-            .get(`/api/images/${this.props.match.params.id}`)
-            .then(data => {
-                this.setState({ images: data.data })
-            })
-            .catch(err => console.error(err));
-    }
 
     render() {
-        
+
         return (
-            <GirlImage images = {this.state.images}/>
+            <GirlImage  username={this.props.username} id={this.props.match.params.id}/>
         )
     }
 }

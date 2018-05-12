@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from '../axios';
 import Form from 'react-validation/build/form';
 import Input from 'react-validation/build/input';
-import { Redirect , withRouter} from 'react-router-dom';
+import { Redirect , Link} from 'react-router-dom';
 class Login extends Component {
     state = {
     }
@@ -51,7 +51,6 @@ class Login extends Component {
             );
     };
     render() {
-        const  from  = this.props.history ;
         if (this.state.username) {
             return <Redirect to= '/' />;
         }
@@ -65,14 +64,14 @@ class Login extends Component {
                         <input type="text" required placeholder="Name" onChange={e => this.handleChange_1(e.target.value)} />
                         <h4>PassWord</h4>
                         <input type="password" required placeholder="PassWord" onChange={e => this.handleChange_2(e.target.value)} />
-                        <br />
-                        <br />
-                        <button className="btn btn-success btnLogin" onClick={this._onLogin}>
+                        <br/>
+                        <br/>
+                        <button className="btn btn-success btn-block btnLogin" onClick={this._onLogin}>
                             <span className="spanLogin">
                                 SignIn
                             </span>
                         </button>
-                        <button className="btn btn-default btnLogin"><span className="spanLogin">SignUp</span></button>
+                        <span>No Account ? <Link to = '/signUp'> <span>Sign-Up </span> </Link> </span>
                     </form>
                 </div>
                 {this.state.err ? (<div className="err"><i className="fas fa-exclamation-triangle"></i>Error!!<h4>{this.state.err}</h4></div>) : <div></div>}
@@ -81,4 +80,4 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+export default (Login);

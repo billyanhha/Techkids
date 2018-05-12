@@ -19,7 +19,7 @@ router.post("/", (req, res) => {
     .then(id => res.send(id))
     .catch(err => {
       console.error(err);
-      res.send(err);
+      res.status(500).send(err);
     });
 });
 

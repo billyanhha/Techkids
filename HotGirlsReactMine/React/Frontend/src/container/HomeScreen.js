@@ -15,7 +15,8 @@ class HomeScreen extends Component {
         axios
             .get("/api/images")
             .then(data => {
-                this.setState({ images: data.data })
+                console.log(data.data);
+                this.setState({ images: data.data });
             })
             .catch(err => console.error(err));
     }
@@ -27,7 +28,7 @@ class HomeScreen extends Component {
       }
     
     render() {
-        const displayImage = this.state.images.filter(img => img.description.includes(this.state.searchContent) || img.title.includes(this.state.searchContent))
+        const displayImage = this.state.images.filter(img => img.createdBy.username.includes(this.state.searchContent) || img.title.includes(this.state.searchContent))
         const length = Math.max(this.state.searchContent ? displayImage.length / 4 : this.state.images.length / 4, 1);
         return (
             <div className="App">

@@ -4,7 +4,7 @@ const createUser = ({ username, email, password, avatarUrl }) =>
   new Promise((resolve, reject) => {
     userModel
       .create({ username, email, password, avatarUrl })
-      .then(user => resolve(user._id))
+      .then(user => resolve(user.username))
       .catch(err => reject(err));
   });
 

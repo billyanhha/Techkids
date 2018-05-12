@@ -65,18 +65,24 @@ li a.camera{
 
 .circle{
   display: flex;
+  flex-direction: row;
   align-items: center;
-  
 }
 .circle h3{
+  margin-top: 10px;
   padding-left: 10px;
-}
-.caption p{
-  float: left;
-  padding-left: 20%;
-  text-align: left;
+  margin-bottom: 0;
 }
 
+.infor{
+  margin-top :0;
+}
+.infor time{
+  font-size: 13px;
+}
+.fa-smile{
+  color: #7DCE82;
+}
 div.circle img{
   float: left;
   width: 50px;
@@ -100,9 +106,12 @@ div.description{
   position: relative;
   transition: 0.2s ease-in-out;
 }
-/* .imagePosted:hover img{
+.imagePosted img{
+  width: 100%;
+}
+.imagePosted:hover img{
   filter: brightness(50%);
-} */
+}
 
 .iconTop{
   position: absolute;
@@ -113,7 +122,21 @@ div.description{
   color: #ffffff;
   transition: 0.2s ease-in-out;
 }
+
+.iconBottom{
+  position: absolute;
+  bottom: 20px;
+  color: #ffffff;
+  left: 10px;
+  font-size: 13px;
+  opacity: 0;
+}
 .imagePosted:hover .iconTop{
+  opacity: 1;
+  z-index: 1;
+  
+}
+.imagePosted:hover .iconBottom{
   opacity: 1;
   z-index: 1;
   
@@ -140,7 +163,7 @@ div.description{
 
 .login {
   /* The image used */
-  background-image: url("http://backgroundcheckall.com/wp-content/uploads/2017/12/login-page-background-11.jpg");
+  background-image: url("./img/background.jpg");
 
   /* Full height */
   height: 100%; 
@@ -154,7 +177,7 @@ div.description{
   position: relative;
 }
 .signup{
-  background-image: url("http://backgroundcheckall.com/wp-content/uploads/2017/12/login-page-background-11.jpg");
+  background-image: url("./img/background.jpg");
 
   /* Full height */
   height: 100%; 
@@ -171,13 +194,14 @@ div.description{
   text-align: center;
   border :1px solid #bababa;
   border-radius: 12px;
-  height: 300px;
+  height: 350px;
   width: 250px;
   padding : 12px;
   box-sizing: border-box;
   margin-top:10%;
   position: relative;
   transition: 0.3s ease-in-out;
+  
 }
 
 .form img{
@@ -192,7 +216,7 @@ div.description{
 .form input{
   border:none;
   height: 25px;
-  border-radius: 12px;
+  border-radius: 4px;
   position: relative;
   padding-left:10px;
   width: 100%;
@@ -210,14 +234,16 @@ signup */
   text-align: center;
   border :1px solid #bababa;
   border-radius: 12px;
-  height: 428px;
+  height: 490px;
   width: 250px;
   padding : 12px;
   box-sizing: border-box;
   margin-top:10%;
   position: relative;
 }
-
+.last{
+  margin-bottom: 10px;
+}
 .form-signup img{
   height: 50px;
   width: 50px;
@@ -230,7 +256,7 @@ signup */
 .form-signup input{
   border:none;
   height: 25px;
-  border-radius: 12px;
+  border-radius: 4px;
   text-align: center;
   width: 100%;
 }
@@ -271,6 +297,10 @@ signup */
   from {opacity: 0;}
   to {opacity: 1;}
 } */
+.btnLogin{
+  line-height: 90%;
+  margin-bottom:10px;
+}
 .spanLogin{
   display: inline-block;
   position: relative;
@@ -290,3 +320,51 @@ signup */
   opacity: 1;
   right:-7px;
 } 
+.modal-body{
+  display: Flex;
+  flex-direction: column;
+}
+.detail{
+  display: flex;
+  flex-direction: row;
+ 
+}
+.ss{
+  flex-basis: 65%;
+}
+.caption{
+  margin:10px;
+  flex-basis: 35%;
+  box-sizing: border-box;
+  
+}
+.caption p{
+  margin-left:25%;
+}
+.caption p {
+  margin-left:25%;
+}
+.caption .ok{
+  margin-left: 0;
+}
+.comment{
+  float: left;
+}
+.comment span{
+  float: left;
+}
+.fa-heart{
+  transition: 0.1s ease-in-out;
+}
+.formComment i.fa-heart:hover{
+  color: #ff0000;
+}
+.formComment i:focus{
+  color: #ff0000;
+}
+.fa-comment-alt{
+  transition: 0.3s ease-in-out;
+}
+.formComment i.fa-comment-alt:hover{
+  color: #7DCE82;
+}

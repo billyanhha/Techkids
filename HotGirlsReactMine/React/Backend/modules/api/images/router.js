@@ -18,6 +18,8 @@ router.get("/", (req, res) => {
 router.post("/", authMiddleware.authorize , upload.single('image') , (req, res) => {
   req.body.id = req.session.userInfo.id;
   req.body.imageFile = req.file;
+  console.log(req.file);
+
   imageController
     .createImage(req.body)
     .then(result => res.send(result))
@@ -30,6 +32,14 @@ router.post("/", authMiddleware.authorize , upload.single('image') , (req, res) 
 
 router.get("/:id", (req, res) => {
   imageController.getImage(req.params.id)
+    .then(image => res.send(image))
+    .catch(err => {
+      console.error(err);
+      res.status(500).send(err);
+    });
+});
+router.get("/:id/allComment", (req, res) => {
+  imageController.getAllComment(req.params.id)
     .then(image => res.send(image))
     .catch(err => {
       console.error(err);
@@ -81,7 +91,24 @@ router.delete("/:imageId/comments/:commentId",authMiddleware.authorize, (req, re
 });
 
 router.post("/:imageId/like",authMiddleware.authorize, (req, res) => {
-  imageController.likeImage(req.params.imageId)
+  imageController.likeImage(req.params.imageId , req.session.userInfo.id)
+    .then(result => res.send(result))
+    .catch(err => {
+      console.error(err);
+      res.status(500).send(err);
+    });
+});
+router.delete("/:imageId/like",authMiddleware.authorize, (req, res) => {
+  imageController.unlikeImage(req.params.imageId , req.session.userInfo.id)
+    .then(result => res.send(result))
+    .catch(err => {
+      console.error(err);
+      res.status(500).send(err);
+    });
+});
+
+router.get("/:imageId/like",authMiddleware.authorize, (req, res) => {
+  imageController.getLike(req.params.imageId , req.session.userInfo.id)
     .then(result => res.send(result))
     .catch(err => {
       console.error(err);

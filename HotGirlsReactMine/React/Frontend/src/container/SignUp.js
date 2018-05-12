@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import axios from '../axios';
+import {Redirect} from 'react-router-dom'
 class SignUp extends Component {
     state = {
     }
     _onSignUp = (e) => {
-        e.preventDefault();
+        // e.preventDefault();
         axios
             .post("/api/users", {
                 username: this.state.username,
                 password: this.state.password,
-                avatarUrl: this.state.email,
+                avatarUrl: this.state.avatarUrl,
                 email: this.state.email,
             })
-            .then(response =>
+            .then(response => {
+                this.setState({ usernameLogin: response.data }); 
+                console.log(response)
+            }
 
-                this.setState({
-                    err_message_username: (response.data.errors.username ? response.data.errors.username : ''),
-                    err_message_password: (response.data.errors.password ? response.data.errors.password : ''),
-                    err_message_email: (response.data.errors.email ? response.data.errors.email : ''),
-                    err_message_avatarUrl: (response.data.errors.avatarUrl ? response.data.errors.avatarUrl : ''),
-                }
-                )
             )
-            .catch(err => console.log(err)
+            .catch(err => {
+                console.log(err.response.data)
+                this.setState({err : err.response.data})
+            }
             );
     };
     handleChangeText = (index, value) => {
@@ -32,6 +32,9 @@ class SignUp extends Component {
         else if (index === 3) this.setState({ avatarUrl: value })
     }
     render() {
+        if (this.state.usernameLogin) {
+            return <Redirect to= '/login' />;
+        }
         return (
             <div className="signup">
                 <div className="form-signup">
@@ -45,10 +48,10 @@ class SignUp extends Component {
                         <h4>Email</h4>
                         <input type="email" required placeholder=" " onChange={e => this.handleChangeText(2, e.target.value)} />
                         <h4>AvatarUrl</h4>
-                        <input type="text" placeholder=" " onChange={e => this.handleChangeText(3, e.target.value)} />
-                        <br />
-                        <br />
-                        <button className="btn btn-success btnLogin" onClick={this._onSignUp}>
+                        <input className="last" type="text" placeholder=" " onChange={e => this.handleChangeText(3, e.target.value)} />
+
+                        <span style={{ fontWeight: 'bold' }} >Read our Privacy first , if you agree , click Submit ,  <a href='#' style={{ color: 'white' }}> Privacy </a> </span>
+                        <button className="btn btn-success btn-block btnLogin" onClick={this._onSignUp} style={{ marginTop: '8px' }}>
                             <span className="spanLogin">
                                 Submit
                             </span>
