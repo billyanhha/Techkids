@@ -69,6 +69,17 @@ router.delete("/:id" , authMiddleware.authorize , (req , res) =>{
   )
 })
 
+// 
+router.get("/:id/user" , authMiddleware.authorize , (req , res) =>{
+  
+  imageController.getAuthoRise(req.params.id , req.session.userInfo.id)
+  .then(result => res.send(result))
+  .catch(err => {
+    console.log(err);
+    res.status(500).send(err)}
+  )
+})
+
 
 router.post("/:imageId/comments",authMiddleware.authorize, (req, res) => {
   req.body.id = req.session.userInfo.id,
@@ -82,8 +93,8 @@ router.post("/:imageId/comments",authMiddleware.authorize, (req, res) => {
 });
 
 router.delete("/:imageId/comments/:commentId",authMiddleware.authorize, (req, res) => {
-  imageController.deleteComment(req.params.imageId, req.params.commentId)
-    .then(result => res.send(result))
+  imageController.deleteComment(req.params.imageId, req.params.commentId , req.session.userInfo.id)
+    .then(result => {res.send(result)})
     .catch(err => {
       console.error(err);
       res.status(500).send(err);

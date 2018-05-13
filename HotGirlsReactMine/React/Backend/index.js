@@ -67,9 +67,12 @@ app.use("/api/auth", authRouter);
 app.use("/api/images", imageRouter);
 app.use("/api/users", userRouter);
 
-app.get("/", (req, res) => {
-  res.status(404).send("404 NOT FOUND");
-});
+
+app.use(express.static('./public'));
+
+app.get('/' , (res , req) =>{
+    res.sendfile('./public/index.html');
+})
 
 mongoose.connect(config.mongoPath, err => {
   if (err) console.error(err);

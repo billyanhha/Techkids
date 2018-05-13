@@ -20,13 +20,13 @@ const userModel = new Schema(
     },
     avatarUrl: {
       type: String, default: "https://sites.google.com/a/windermereprep.com/canvas/_/rsrc/1486400406169/home/unknown-user/user-icon.png?height=200&width=200",
-      validate :{
-        validator : function(value){
+      validate: {
+        validator: function (value) {
           const regex = /(https?:\/\/.*\.(?:png|jpg))/i;;
           return regex.test(value);
 
-        } , 
-        message : 'not valid link to use',
+        },
+        message: 'not valid link to use',
       }
     },
     active: { type: Boolean, default: true }
@@ -35,12 +35,31 @@ const userModel = new Schema(
 );
 
 
+
+// userModel.path('email').validate(function (value, done) {
+//   this.model('users').count({ email: value }, function (err, count) {
+//     if (err) {
+//       return done(err);
+//     }
+//     // If `count` is greater than zero, "invalidate"
+//     done(!count);
+//   });
+// }, 'Username already exists');
+
 userModel.pre("save", function (next) {
   if (!this.isModified("password")) { // TODO bug on update password
     console.log("Modified");
     return next();
-  }
 
+    if (error.name === 'MongoError' && error.code === 11000) {
+      next(new Error('There are already '));
+    } else {
+      next(error);
+    }
+
+
+  }
+  
   bcrypt
     .genSalt(12)
     .then(salt => bcrypt.hash(this.password, salt))

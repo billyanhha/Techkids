@@ -49,7 +49,22 @@ const getAllImages = page =>
       .then(result => resolve(result))
       .catch(err => reject(err));
   });
-
+const getAuthoRise = (imageId, id) =>
+  new Promise((resolve, reject) => {
+    imageModel
+      .findOne({
+        active: true,
+        _id: imageId,
+         createdBy: {_id : id}
+      })
+      .then(data => {
+        resolve(
+          data
+        )
+      })
+      .then(result => resolve(result))
+      .catch(err => reject(err));
+  });
 
 
 const updateImage = (id, {
@@ -151,19 +166,20 @@ const addComment = (imageId, { id, content }) =>
       .catch(err => reject(err));
   });
 
-const deleteComment = (imageId, commentId) =>
+const deleteComment = (imageId, commentId , userId) =>
   new Promise((resolve, reject) => {
     imageModel
       .update({
-        _id: imageId
+        _id: imageId,
       }, {
           $pull: {
             comment: {
-              _id: commentId
+              _id: commentId,
+              createdBy : userId
             }
           }
         })
-      .then(data => resolve(data))
+      .then(data =>  resolve(data ))
       .catch(err => reject(err));
   });
 
@@ -241,4 +257,5 @@ module.exports = {
   unlikeImage,
   getLike,
   getAllComment,
+  getAuthoRise,
 };
