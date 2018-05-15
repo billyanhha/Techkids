@@ -6,15 +6,13 @@ import movie_4 from '../image/movie_4.jpg'
 import movie_5 from '../image/movie_5.jpg'
 import movie_6 from '../image/movie_6.jpg'
 
-class BodyTop extends Component {
+class HostList extends Component {
     render() {
         return (
-            <div className="top-body">
-                <br />
-                {/* <span style = {{color: 'rgb(66, 133, 244)' }}>1</span> */}
-                <div className="row">
+            <div className="ok">
+                <div className=" hostlist">
                     <div className="col col-md-2 col-xs-4 nopadding detail-high">
-                        <img src={movie_1} className="img-responsive"  />
+                        <img src={movie_1} className="img-responsive" />
                         <div className="detail-low">
                             <span> <i className="fas fa-video"></i> Cau be ngoaiquoc</span>
                             <hr />
@@ -76,15 +74,14 @@ class BodyTop extends Component {
                 </div>
                 <div className="contentList">
                     <p>List phim cực đỉnh Vol.1</p>
-                    <button className ="btn btn-primary"> <i className="fas fa-video" style ={{color : '#EA4335'}}></i> #top {this.props.id + 1} </button>
-                    <button className ="btn buttonContent" style={{marginLeft :'10px'}}><i className="far fa-eye" style ={{color : '#EA4335'}}></i> 130 </button>
+                    <button className="btn btn-primary"> <i className="fas fa-video" style={{ color: '#EA4335' }}></i> #top {this.props.id + 1} </button>
+                    <button className="btn buttonContent" style={{ marginLeft: '10px' }}><i className="far fa-eye" style={{ color: '#EA4335' }}></i> 130 </button>
                 </div>
             </div>
-
         );
 
 
     }
 }
 
-export default BodyTop;
+export default HostList;
