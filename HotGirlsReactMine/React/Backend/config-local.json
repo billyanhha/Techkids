@@ -1,6 +1,6 @@
 {
-    "mongoPath": "mongodb://caubengoaiquoc:haquyanh!@#$123@ds221990.mlab.com:21990/datahot",
+    "mongoPath": "mongodb://admin:123456@ds221990.mlab.com:21990/datahot",
     "sessionSecret" :"ok",
-    "secureCookie" : false
-
+    "secureCookie" : false,
+    "rootPath" : "vovagram.herokuapp.com"
 }

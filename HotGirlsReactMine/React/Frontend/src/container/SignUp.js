@@ -1,29 +1,32 @@
 import React, { Component } from 'react';
 import axios from '../axios';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 class SignUp extends Component {
     state = {
     }
     _onSignUp = (e) => {
-        // e.preventDefault();
-        axios
-            .post("/api/users", {
-                username: this.state.username,
-                password: this.state.password,
-                avatarUrl: this.state.avatarUrl,
-                email: this.state.email,
-            })
-            .then(response => {
-                this.setState({ usernameLogin: response.data }); 
-                console.log(response)
-            }
+        this.setState({err: null})
+        if (this.state.username && this.state.password && this.state.email) {
+            e.preventDefault(),
+                axios
+                    .post("/api/users", {
+                        username: this.state.username,
+                        password: this.state.password,
+                        avatarUrl: this.state.avatarUrl,
+                        email: this.state.email,
+                    })
+                    .then(response => {
+                        this.setState({ usernameLogin: response.data });
+                        console.log(response)
+                    }
 
-            )
-            .catch(err => {
-                console.log(err.response.data)
-                this.setState({err : err.response.data})
-            }
-            );
+                    )
+                    .catch(err => {
+                        console.log(err.response.data.errmsg)
+                        this.setState({ err: err.response.data.errmsg })
+                    }
+                    );
+        }
     };
     handleChangeText = (index, value) => {
         if (index === 0) this.setState({ username: value })
@@ -33,7 +36,7 @@ class SignUp extends Component {
     }
     render() {
         if (this.state.usernameLogin) {
-            return <Redirect to= '/login' />;
+            return <Redirect to='/login' />;
         }
         return (
             <div className="signup">
@@ -58,7 +61,7 @@ class SignUp extends Component {
                         </button>
                     </form>
                 </div>
-                {this.state.err ? (<div className="err"><i className="fas fa-exclamation-triangle">Error!!</i><h4>{this.state.err}</h4></div>) : ''}
+                {this.state.err ? (<div id="err"><i className="fas fa-exclamation-triangle">Error!!</i><h4>{this.state.err}</h4></div>) : ''}
             </div>
         )
     }

@@ -28,7 +28,7 @@ class ProfilePanel extends Component {
         if(this.state.title){
         let formData = new FormData();
         formData.append('image', this.state.image);
-        formData.append('title', this.state.title);
+        formData.append('title', (this.state.title.length < 15) ? '----------> ' + this.state.title : this.state.title);
         formData.append('description', this.state.description);
         console.log(formData);
         
@@ -59,7 +59,7 @@ class ProfilePanel extends Component {
                             </label>
                             <label >
                                 <h4>Title</h4>
-                                <input type="text" required placeholder ="Must fill in"  className="form-control" style={{ width: "45%" }} onChange={e => this.handleChangeValue(1, e.target.value)} />
+                                <textarea type="text" required placeholder ="Must fill in"  className="form-control" style={{ width: "45%" }} onChange={e => this.handleChangeValue(1, e.target.value)} />
                             </label>
                             <label >
                                 <h4>Description</h4>

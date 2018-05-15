@@ -1,6 +1,7 @@
 const imageModel = require("./model");
 const fs = require('fs');
 const path = require('path');
+const config = require('../../../config-local.json');
 const createImage = ({
   imageFile,
   title,
@@ -40,9 +41,9 @@ const getAllImages = page =>
       .then(data => {
         resolve(
           data.map(img =>
-
-
-            Object.assign({}, img._doc, { imageUrl: `localhost:6969/api/images/${img._id}/data` })
+            //vovagram.herokuapp.com/api/images/5af88abfbf02210014795555/data
+            //http://localhost:6969/api/images/5af886de3510e800144b87fe/data
+            Object.assign({}, img._doc, { imageUrl: `${config.rootPath}/api/images/${img._id}/data` })
           )
         )
       })
@@ -130,7 +131,7 @@ const getImage = id =>
       )
       .then(data =>
         resolve(
-          Object.assign({}, data._doc, { imageUrl: `localhost:6969/api/images/${id}/data` })
+          Object.assign({}, data._doc, { imageUrl: `${config.rootPath}/api/images/${id}/data` })
         )
       )
       .catch(err => reject(err));

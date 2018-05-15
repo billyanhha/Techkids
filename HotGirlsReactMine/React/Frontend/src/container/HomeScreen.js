@@ -20,28 +20,40 @@ class HomeScreen extends Component {
             })
             .catch(err => console.error(err));
     }
-    
-      
-    
-      _onSearchField = (e) => {
+
+
+
+    _onSearchField = (e) => {
         this.setState({ searchContent: e });
-      }
-    
+    }
+
     render() {
-        const displayImage = this.state.images.filter(img => img.createdBy.username.includes(this.state.searchContent) || img.title.includes(this.state.searchContent))
-        const length = Math.max(this.state.searchContent ? displayImage.length / 4 : this.state.images.length / 4, 1);
+        const displayImage = this.state.images.filter(img => {
+            let name = (img.createdBy && img.createdBy.username) ? img.createdBy.username : '';
+            let title = img.title;
+            let search = this.state.searchContent ? this.state.searchContent :'';
+            return (name.toLowerCase().includes(search.toLowerCase()) || title.toLowerCase().includes(search.toLowerCase()))
+        });
+
+        const length = Math.max(this.state.searchContent ? Math.floor(displayImage.length / 4) : Math.floor(this.state.images.length / 4));
+        let  left = (this.state.searchContent ? (displayImage.length % 4) : (this.state.images.length % 4));
+        let arr = [];
+        if(left === 1) arr = [1 , 0 , 0 ,0];
+        else if(left === 2) arr = [1 , 1 , 0 ,0];
+        else if(left === 3) arr = [1 , 1 , 1 ,0];
+        else if(left === 0) arr = [0 ,0 , 0 ,0];
         return (
             <div className="App">
-                <NavBar onSearchField={this._onSearchField}  username={this.props.username} />
+                <NavBar onSearchField={this._onSearchField} username={this.props.username} />
                 <div className="container">
-                    {this.state.searchContent ? (<div><BodyImage allImages={displayImage.slice(0, length)} />
-                        <BodyImage1 allImages={displayImage.slice(length, 2 * length)} />
-                        <BodyImage2 allImages={displayImage.slice(2 * length, 3 * length)} />
-                        <BodyImage3 allImages={displayImage.slice(3 * length, 4 * length)} /></div>)
-                        : (<div><BodyImage allImages={this.state.images.slice(0, length)} id = {this.props.id} />
-                            <BodyImage1 allImages={this.state.images.slice(length, 2 * length)} />
-                            <BodyImage2 allImages={this.state.images.slice(2 * length, 3 * length)} />
-                            <BodyImage3 allImages={this.state.images.slice(3 * length, 4 * length)} /></div>)
+                    {this.state.searchContent ? (<div><BodyImage allImages={displayImage.slice(0, length + ((arr[0] > 0 ) ? 1: 0)  )} />
+                        <BodyImage1 allImages={displayImage.slice(length + ((arr[0] > 0 ) ? 1: 0)  , 2 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0))} />
+                        <BodyImage2 allImages={displayImage.slice( 2 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0), 3 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0)+ ((arr[2] > 0 ) ? 1: 0))} />
+                        <BodyImage3 allImages={displayImage.slice(3 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0)+ ((arr[2] > 0 ) ? 1: 0), 4 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0)+ ((arr[2] > 0 ) ? 1: 0))} /></div>)
+                        : (<div><BodyImage id = {this.state.images._id} allImages={this.state.images.slice(0, length + ((arr[0] > 0 ) ? 1: 0)  )} />
+                            <BodyImage1 id = {this.state.images._id} allImages={this.state.images.slice(length + ((arr[0] > 0 ) ? 1: 0)  , 2 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0))} />
+                            <BodyImage2 id = {this.state.images._id} allImages={this.state.images.slice( 2 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0), 3 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0)+ ((arr[2] > 0 ) ? 1: 0))} />
+                            <BodyImage3 id = {this.state.images._id} allImages={this.state.images.slice(3 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0)+ ((arr[2] > 0 ) ? 1: 0), 4 * length + ((arr[0] > 0 ) ? 1: 0) + ((arr[1] > 0 ) ? 1: 0)+ ((arr[2] > 0 ) ? 1: 0))} /></div>)
                     }
                 </div>
             </div>

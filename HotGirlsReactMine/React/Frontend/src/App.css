@@ -34,10 +34,13 @@ body{
 .logo{
   text-align: center;
 }
-
+.searchField{
+  display: flex;
+  justify-content: center;
+}
 .imgHeader{
-  margin-top: 15px;
-  height: 25px;
+  margin-top: 5px;
+  height: 60px;
   width: auto;
 }
 .profile{
@@ -64,9 +67,10 @@ li a.camera{
 }
 
 .circle{
-  display: flex;
+   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: center; 
+  position: relative;
 }
 .circle h3{
   margin-top: 10px;
@@ -122,20 +126,28 @@ div.description{
   color: #ffffff;
   transition: 0.2s ease-in-out;
 }
-
+.iconTop-right{
+  position: absolute;
+  right: 0;
+}
 .iconBottom{
   position: absolute;
-  bottom: 20px;
+  bottom: 1px;
   color: #ffffff;
-  left: 10px;
   font-size: 13px;
   opacity: 0;
+  width: 100%;
 }
 .imagePosted:hover .iconTop{
   opacity: 1;
   z-index: 1;
   
 }
+/* .imagePosted:hover .iconTop-right{
+  opacity: 1;
+  z-index: 1;
+  
+} */
 .imagePosted:hover .iconBottom{
   opacity: 1;
   z-index: 1;
@@ -144,6 +156,16 @@ div.description{
 .iconTop:hover{
   top:2px;
   transform: scale(1.2)
+}
+.iconTop:active{
+  top:2px;
+  transform: scale(0.8)
+}
+.iconTop-right:hover{
+  transform: scale(1.2)
+}
+.iconTop-right:active{
+  transform: scale(0.8)
 }
 
 .buttonLogin{
@@ -270,7 +292,7 @@ signup */
 .form-signup input[type="file"]{
   border-radius: 12px;
 }
-.err{
+#err{
   position: absolute;
   right: 10px;
   top : 10px;
@@ -281,7 +303,7 @@ signup */
   background-color: #CA5E59;
   font-weight: bold;
   opacity: 0;
-  animation: fade-in 5s ease-in-out ;
+  animation: fade-in 3s ease-in-out ;
 }
 @keyframes fade-in {
   0% {opacity: 0;}
@@ -330,20 +352,30 @@ signup */
  
 }
 .ss{
-  flex-basis: 65%;
+  width: 65%;
+}
+.captionImage{
+  margin:10px;
+  width: 35%;
+  box-sizing: border-box;
+  /* text-align: left; */
 }
 .caption{
   margin:10px;
-  flex-basis: 35%;
   box-sizing: border-box;
-  
+  /* text-align: left; */
 }
-.caption p{
-  margin-left:25%;
+/* .caption p {
+  margin-left: 30px;
+} */
+.title{
+  text-align: left;
+  display: inline-block;
 }
-.caption p {
-  margin-left:25%;
+.title i{
+  padding-left:30x;
 }
+
 .caption .ok{
   margin-left: 0;
 }
@@ -359,6 +391,9 @@ signup */
 .formComment i.fa-heart:hover{
   color: #ff0000;
 }
+.formComment button{
+  padding: 0;
+}
 .formComment i:focus{
   color: #ff0000;
 }
@@ -367,4 +402,7 @@ signup */
 }
 .formComment i.fa-comment-alt:hover{
   color: #7DCE82;
+}
+.col{
+  text-align: center;
 }

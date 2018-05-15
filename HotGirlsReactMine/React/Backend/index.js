@@ -70,8 +70,8 @@ app.use("/api/users", userRouter);
 
 app.use(express.static('./public'));
 
-app.get('/' , (res , req) =>{
-    res.sendfile('./public/index.html');
+app.get('/' , (req , res) =>{
+  res.sendFile('./public/index.html')
 })
 
 mongoose.connect(config.mongoPath, err => {
@@ -79,7 +79,7 @@ mongoose.connect(config.mongoPath, err => {
   else console.log("Database connect successful");
 });
 
-const port = process.env.port || 6969;
+const port = process.env.PORT || 6969;
 
 app.listen(port, err => {
   if (err) console.log(err);
