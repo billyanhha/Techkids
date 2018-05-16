@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import logo from '../image/logo3.png'
-import { Navbar, NavItem, Nav, Carousel  } from 'react-bootstrap'
+import { Navbar, NavItem, Nav, Carousel } from 'react-bootstrap'
 import img_11 from '../image/2.jpg'
 import img_12 from '../image/1.jpg'
 import img_13 from '../image/3.jpg'
@@ -10,6 +10,7 @@ import img_23 from '../image/6.jpg'
 import img_31 from '../image/7.jpg'
 import img_32 from '../image/8.jpg'
 import img_33 from '../image/9.jpg'
+import { Link } from 'react-router-dom'
 // import img_13 from '../image/3.jpg'
 class Header extends Component {
     state = {
@@ -18,7 +19,8 @@ class Header extends Component {
     render() {
 
         return (
-            <div className="container-fuild header ">
+            // + this.state.isShown ? 'show' : 'hide'
+            <div className={"container-fuild header"}>
                 <div className="center-img">
                     <div className="row">
                         <div className="center">
@@ -37,7 +39,7 @@ class Header extends Component {
                 </div>
                 <div className=" myNav">
                     <Navbar collapseOnSelect >
-                    
+
                         <Navbar.Header>
                             {/* <Navbar.Brand>
                                 {/* <img src={logo} alt="Techkids" className="imgHeader img-responsive" /> */}
@@ -45,18 +47,16 @@ class Header extends Component {
                             <Navbar.Toggle />
                         </Navbar.Header>
                         <Navbar.Collapse>
-                        <input type="text" className="form-control inputNav"   placeholder="Search" />
+                            <input type="text" className="form-control inputNav" placeholder="Search" />
                             <Nav>
-                                
                                 <NavItem eventKey={1} >
-
-                                    <i className="fas fa-home" style={{ fontSize: '20px' }}></i>
+                                    <Link to="/" style={{ color: 'black' }}>  <i className="fas fa-home" style={{ fontSize: '20px' }}></i></Link>
                                 </NavItem>
                                 <NavItem eventKey={2} >
-                                    Phim vừa Up <i className="far fa-clock"></i>
+                                    <Link to="/justNow" style={{ color: 'black' }}> Phim vừa Up <i className="far fa-clock"></i></Link>
                                 </NavItem>
                                 <NavItem eventKey={3} >
-                                    Tải list <i className="fas fa-upload"></i>
+                                <Link to="/upList" style={{ color: 'black' }}>Đăng list <i className="fas fa-upload"></i> </Link>
                                 </NavItem>
                                 <NavItem eventKey={4} >
                                     Về chúng tôi <i className="fas fa-pencil-alt"></i>
@@ -70,13 +70,13 @@ class Header extends Component {
                         <Carousel>
                             <Carousel.Item>
                                 <div className="row">
-                                    <div className="col col-md-4 col-sm-4 col-xs-4 nopadding">
+                                    <div className="col col-md-4 col-sm-4 col-xs-4 nopadding-for-slide">
                                         <img src={img_11} />
                                     </div>
-                                    <div className="col col-md-4 col-sm-4 col-xs-4 nopadding">
+                                    <div className="col col-md-4 col-sm-4 col-xs-4 nopadding-for-slide">
                                         <img src={img_12} />
                                     </div>
-                                    <div className="col col-md-4 col-sm-4 col-xs-4 nopadding">
+                                    <div className="col col-md-4 col-sm-4 col-xs-4 nopadding-for-slide">
                                         <img src={img_13} />
                                     </div>
                                 </div>

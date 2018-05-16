@@ -11,6 +11,7 @@ class Home extends Component {
                 <NavBar/>
                 <div className ="center">
                     {/* <Suggestion/> */}
+                    
                     <Body/>
                     
                 </div>

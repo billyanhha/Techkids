@@ -9,7 +9,7 @@ class Body extends Component {
             <div className="body-top">
                 {/* Top */}
                 <div className="topList">
-                    <span style = {{ fontSize : '30px'}}>Top Legendary</span>
+                    <center><span style = {{ fontSize : '30px'}}>Top Phim Khủng</span></center>
                 </div>
                 {bodyTop}
                 

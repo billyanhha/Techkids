@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "add": "^2.0.6",
     "bootstrap": "3",
     "nuka-carousel": "^4.2.1",
     "react": "^16.3.2",
@@ -11,7 +12,9 @@
     "react-responsive": "^4.1.0",
     "react-responsive-carousel": "^3.1.37",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "react-select": "^1.2.1",
+    "yarn": "^1.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
